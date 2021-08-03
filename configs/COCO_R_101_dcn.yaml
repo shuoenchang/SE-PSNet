@@ -1,0 +1,18 @@
+_BASE_: "R_101.yaml"
+MODEL:
+  WEIGHTS: "weights/FCOS_MS_R_101_2x.pth"
+  RESNETS:
+    DEPTH: 101
+    DEFORM_ON_PER_STAGE: [False, True, True, True]
+    DEFORM_MODULATED: True
+    DEFORM_INTERVAL: 3
+    OUT_FEATURES: ["res2", "res3", "res4", "res5"]
+SOLVER:
+  IMS_PER_BATCH: 6
+  BASE_LR: 0.01 
+  STEPS: (120000, 420000, 500000)
+  MAX_ITER: 600000
+OUTPUT_DIR: "output/COCO_R_101_dcn"
+TEST:
+  EVAL_PERIOD: 60000
+
